@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: emuzun <emuzun@student.42istanbul.com.t    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/05 12:00:00 by user              #+#    #+#              #
-#    Updated: 2025/04/05 14:52:36 by emuzun           ###   ########.fr        #
+#    Created: 2025/04/05 12:00:00 by emuzun            #+#    #+#              #
+#    Updated: 2025/04/08 17:52:40 by emuzun           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = push_swap
 
 SRCS = push_swap.c stack.c stack_utils.c \
 	p_and_s_operations.c r_operations.c rr_operations.c \
-    insertion_sort.c radix_sort.c utils.c
+    sort_medium_and_small.c radix_sort.c utils.c \
+	utils2.c split_utils.c atoi_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

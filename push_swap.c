@@ -5,34 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emuzun <emuzun@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/05 12:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/04/05 05:31:54 by emuzun           ###   ########.fr       */
+/*   Created: 2025/04/05 12:00:00 by emuzun            #+#    #+#             */
+/*   Updated: 2025/04/08 17:08:30 by emuzun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	parse_args(int argc, char **argv, t_stacks *stacks)
+static char	*join_argv(int argc, char **argv)
 {
+	char	*str;
+	char	*tmp;
 	int		i;
+
+	str = ft_strdup("");
+	i = 1;
+	while (i < argc)
+	{
+		tmp = ft_strjoin(str, " ");
+		free(str);
+		str = ft_strjoin(tmp, argv[i]);
+		free(tmp);
+		i++;
+	}
+	return (str);
+}
+
+static int	process_arg(char *arg, t_stacks *stacks)
+{
 	int		error;
 	int		num;
 	t_stack	*new;
 
-	i = 1;
-	while (i < argc)
+	error = 0;
+	num = ft_atoi_check(arg, &error);
+	if (error)
+		return (0);
+	new = stack_new(num);
+	if (!new)
+		return (0);
+	stack_add_back(&(stacks->a), new);
+	return (1);
+}
+
+int	parse_args(int argc, char **argv, t_stacks *stacks)
+{
+	char	*joined_str;
+	char	**args;
+	int		i;
+
+	joined_str = join_argv(argc, argv);
+	if (!joined_str)
+		exit_error(stacks);
+	args = ft_split(joined_str, ' ');
+	free(joined_str);
+	if (!args)
+		exit_error(stacks);
+	i = 0;
+	while (args[i])
 	{
-		error = 0;
-		num = ft_atoi_check(argv[i], &error);
-		if (error)
-			return (0);
-		new = stack_new(num);
-		if (!new)
-			return (0);
-		stack_add_back(&(stacks->a), new);
+		if (!process_arg(args[i], stacks))
+		{
+			free_split(args);
+			exit_error(stacks);
+		}
 		i++;
 	}
-	check_duplicates(stacks->a);
+	free_split(args);
+	if (check_duplicates(stacks->a))
+		exit_error(stacks);
 	return (1);
 }
 
@@ -40,8 +81,8 @@ void	sort_stack(t_stacks *stacks, int size)
 {
 	if (is_sorted(stacks->a))
 		return ;
-	if (size <= 25)
-		insertion_sort(stacks, size);
+	if (size <= 74)
+		sort_medium_and_small(stacks, size);
 	else
 		radix_sort(stacks, size);
 }
@@ -58,7 +99,7 @@ int	main(int argc, char **argv)
 	if (!parse_args(argc, argv, &stacks))
 	{
 		stack_clear(&stacks.a);
-		exit_error();
+		exit_error(&stacks);
 	}
 	size = stack_size(stacks.a);
 	sort_stack(&stacks, size);
