@@ -6,7 +6,7 @@
 /*   By: emuzun <emuzun@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 05:29:18 by emuzun            #+#    #+#             */
-/*   Updated: 2025/04/08 16:15:09 by emuzun           ###   ########.fr       */
+/*   Updated: 2025/04/09 12:42:23 by emuzun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,6 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 	last->next = new;
 }
 
-void	stack_add_front(t_stack **stack, t_stack *new)
-{
-	if (!new)
-		return ;
-	new->next = *stack;
-	*stack = new;
-}
 
 void    stack_clear(t_stack **stack)
 {

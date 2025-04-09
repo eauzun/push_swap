@@ -1,9 +1,16 @@
-#include"push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   atoi_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emuzun <emuzun@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 00:12:35 by emuzun            #+#    #+#             */
+/*   Updated: 2025/04/09 00:12:36 by emuzun           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static int	is_space(char c)
-{
-	return (c == ' ' || (c >= 9 && c <= 13));
-}
+#include"push_swap.h"
 
 static int	is_digit(char c)
 {
@@ -31,7 +38,7 @@ int	ft_atoi_check(const char *str, int *error)
 	nb = 0;
 	sign = 1;
 	i = 0;
-	while (is_space(str[i]))
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 		if (str[i++] == '-')

@@ -6,7 +6,7 @@
 /*   By: emuzun <emuzun@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 05:28:54 by emuzun            #+#    #+#             */
-/*   Updated: 2025/04/08 18:03:26 by emuzun           ###   ########.fr       */
+/*   Updated: 2025/04/09 12:42:29 by emuzun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_stacks
 
 t_stack	*stack_new(int value);
 void	stack_add_back(t_stack **stack, t_stack *new);
-void	stack_add_front(t_stack **stack, t_stack *new);
 void	stack_clear(t_stack **stack);
 int		stack_size(t_stack *stack);
 t_stack	*stack_last(t_stack *stack);
